@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Tareas{% endblock %}
+
+{% block header %}
+    {{ include('partials/nav.html') }}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <meta name="keywords" content="PAW,2018,Templates,PHP">
+{% endblock %}
+
+{% block main %}
+<h2>Turnos</h2>
+<dl>
+
+    <dt>Nombre: </dt>
+    <dd><?= $dato['nombre'];?></dd>
+    
+    <dt>Email: </dt>
+    <dd><?= $dato['email'];?></dd>
+
+    <dt>Teléfono: </dt> 
+    <dd><?= $dato['tel'];?></dd>
+
+    <dt>Edad: </dt>
+    <dd><?= $dato['edad'];?></dd>
+
+    <dt>Talla de Calzado: </dt>
+    <dd><?= $dato['talla'];?></dd>
+
+    <dt>Altura: </dt>
+    <dd><?= $dato['altura'];?></dd>
+
+    <dt>Fecha de Nacimiento: </dt>
+    <dd><?= $dato['nacimiento'];?></dd>
+
+    <dt>Color de Pelo: </dt>
+    <dd><?= $dato['cpelo'];?></dd>
+
+    <br>
+    <dt>Fecha de Turno: </dt>
+    <dd><?= $dato['fechaturno'];?></dd>
+
+    <dt>Horario del Turno: </dt>
+    <dd><?= $dato['horaturno'];?></dd>
+
+
+    <?php
+        if(file_exists($dirImagen)) {
+            echo "<br><br>";
+            echo "<h2>Diagnostico</h2>";
+            echo "<img src=$dirImagen>";
+            echo "<br><br>";
+        }            
+    ?>     
+    
+</dl>
+{% endblock %}
