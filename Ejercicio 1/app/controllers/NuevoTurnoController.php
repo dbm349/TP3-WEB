@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\Models\Turnos;
 
+
+
 class NuevoTurnoController extends Controller
 {
     public function __construct()
@@ -57,4 +59,15 @@ class NuevoTurnoController extends Controller
         $this->model->insert($turno);
         return $turno;
     }
-}
+
+
+
+
+
+
+
+
+
+
+
+
