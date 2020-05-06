@@ -59,15 +59,4 @@ class NuevoTurnoController extends Controller
         $this->model->insert($turno);
         return $turno;
     }
-
-
-
-
-
-
-
-
-
-
-
-
+}
