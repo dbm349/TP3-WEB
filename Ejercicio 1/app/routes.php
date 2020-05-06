@@ -7,6 +7,7 @@
 
     $router->get('turnos', 'NuevoTurnoController@index');
     $router->get('turnos/create', 'NuevoTurnoController@create');
+    $router->post('turnos/validate', 'NuevoTurnoController@validate');
     
 
     $router->get('not_found', 'ProjectController@notFound');

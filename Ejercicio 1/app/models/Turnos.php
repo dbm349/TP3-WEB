@@ -13,8 +13,8 @@ class Turnos extends Model
         return $this->db->selectAll($this->table);
     }
 
-    public function insert(array $task)
+    public function insert(array $turno)
     {
-        $this->db->insert($this->table, $task);
+        $this->db->insert($this->table, $turno);
     }
 }
