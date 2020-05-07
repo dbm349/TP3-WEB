@@ -1,0 +1,1 @@
+CREATE SCHEMA ejercicio2paw;

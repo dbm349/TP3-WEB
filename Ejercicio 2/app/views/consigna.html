@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block header %}
+    {{ include('partials/nav.html') }}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <meta name="keywords" content="PAW,2018,Templates,PHP">
+{% endblock %}
+
+{% block main %}
+<h1>Consigna</h1>
+<span>Modifique el sistema para permitir que las imágenes sean persistidas sobre la base de datos. El
+    software debe permitir cargar imágenes de hasta 10 MB. Si la imagen pesa más, se le debe
+    informar al usuario este inconveniente, y pre-cargando el formulario con los datos ingresados,
+    solicitar una nueva imagen.</span>
+{% endblock %}
