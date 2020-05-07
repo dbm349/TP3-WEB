@@ -7,26 +7,22 @@ class PagesController
     /**
      * Show the home page.
      */
-    public function home()
-    {
+    public function home(){
         return view('index');
     }
 
     /**
      * Show the about page.
      */
-    public function about()
-    {
+    public function about(){
         $company = 'Laracasts';
-
         return view('consigna', ['company' => $company]);
     }
 
     /**
      * Show the contact page.
      */
-    public function contact()
-    {
+    public function contact(){
         return view('contact');
     }
 }

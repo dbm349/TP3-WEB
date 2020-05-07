@@ -11,8 +11,6 @@
     <meta name="keywords" content="PAW,2018,Templates,PHP">
 {% endblock %}
 
-
-
 {% block main %}
 <h2>Turnos</h2>
 <table>
@@ -27,20 +25,17 @@
     </thead>
 
     <tbody>
-    {% for turno in turnos %}
-
-        <tr>
-            <td>{{turno.fechaturno}}</td>     
-            <td>{{turno.horaturno}}</td>
-            <td>{{turno.nombre}}</td>
-            <td>{{turno.tel}}</td>
-            <td>{{turno.email}}</td>
-     
-        </tr>
-
-{% else %}
-<h2>No hay turnos registrados</h2>
-{% endfor %}
+        {% for turno in turnos %}
+            <tr>
+                <td>{{turno.fechaturno}}</td>     
+                <td>{{turno.horaturno}}</td>
+                <td>{{turno.nombre}}</td>
+                <td>{{turno.tel}}</td>
+                <td>{{turno.email}}</td>
+            </tr>
+        {% else %}
+            <span>No hay turnos registrados</span>
+        {% endfor %}
     </tbody>
 </table>
 {% endblock %}

@@ -12,52 +12,53 @@
 {% endblock %}
 
 {% block main %}
-<h2>Nuevo Turno</h2>
-<form action="/turnos/validate" method="POST" enctype="multipart/form-data">
-     <fieldset>
-                <legend>Datos Personales</legend>
-                <article>
+    <h2>Nuevo Turno</h2>
+    <form action="/turnos/validate" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Datos Personales</legend>
+
+            <article>
                 <label for="nombre">Nombre: </label>
-                <input type="text" id="nombre" name="nombre" maxlength="20" pattern="[A-Za-zÀ-ž\s]{3,20}" placeholder="Ingrese su nombre"  required>
+                <input type="text" id="nombre" name="nombre" maxlength="20" pattern="[A-Za-zÀ-ž\s]{3,20}" placeholder="Ingrese su nombre" value="{{ nombre }}" required>
                 *
-                </article>
+            </article>
 
-                <article>
+            <article>
                 <label for="email">Email: </label>
-                <input type="email" id="email" name="email" placeholder="Ingrese su email" required>
+                <input type="email" id="email" name="email" placeholder="Ingrese su email" value="{{ email }}" required>
                 *
-                </article>    
-              
-                </article>
+            </article>    
+            
+            </article>
                 <label for="tel">Teléfono: </label> 
-                <input type="number" id="tel" name="tel" pattern=[0-9\+][0-9]{13} placeholder="Ingrese su teléfono" required>
+                <input type="number" id="tel" name="tel" pattern=[0-9\+][0-9]{13} placeholder="Ingrese su teléfono" value="{{ tel }}" required>
                 *
-                <article>
+            <article>
 
-                <article>
+            <article>
                 <label for="edad">Edad: </label>
-                <input type="number" id="edad" name="edad"  min="1" max="105" placeholder="Rango válido [1-105]">
-                </article>
+                <input type="number" id="edad" name="edad"  min="1" max="105" placeholder="Rango válido [1-105]" value="{{ edad }}" >
+            </article>
 
-                <article>
+            <article>
                 <label for="talla">Talla de Calzado: </label>
-                <input type="number" id="talla" name="talla" min="20" max="45" placeholder="Rango válido [20-45]">
+                <input type="number" id="talla" name="talla" min="20" max="45" placeholder="Rango válido [20-45]" value="{{ talla }}">
                 </article>
-               
-                <article>
+            
+            <article>
                 <label for="altura">Altura: </label>
                 0.5
-                <input type="range" id="altura" name="altura" min="0.5" max="3" step="0.1">
+                <input type="range" id="altura" name="altura" min="0.5" max="3" step="0.1" value="{{ altura }}" >
                 3
-                </article>
+            </article>
 
-                <article>
+            <article>
                 <label for="nacimiento">Fecha de Nacimiento: </label>
-                <input type="date" id="nacimiento" name="nacimiento" required>
+                <input type="date" id="nacimiento" name="nacimiento" value="{{ nacimiento }}" required>
                 *
-                </article>
-          
-                <article>
+            </article>
+
+            <article>
                 <label for="cpelo">Color de Pelo: </label>
                     <select id="cpelo" name="cpelo">
                         <option value="Castaño">Castaño</option>
@@ -65,32 +66,90 @@
                         <option value="Pelirrojo">Pelirrojo</option>
                         <option value="Negro">Negro</option>
                     </select>
-                </article>
+            </article>
 
-                <article>
+            <article>
                 <label for="fechaturno">Fecha de Turno: </label>
-                <input type="date" id="fechaturno" name="fechaturno" min="2020-01-01" required>
+                <input type="date" id="fechaturno" name="fechaturno" min="2020-01-01" value="{{ fechaturno }}" required>
                 *
-                </article>
-                 
-                <article>
+            </article>
+                
+            <article>
                 <label>Horario del Turno: </label>
-                <input type="time" id="horaturno" name="horaturno" min="08:00:00" max="17:00:00" value="08:00:00" step="900" required>
+                <input type="time" id="horaturno" name="horaturno" min="08:00:00" max="17:00:00" value="08:00:00" step="900" value="{{ horaturno }}" required>
                 *
-                </article>
+            </article>
 
-                <article>                
-                <br><br><br>
-                * <small>Este dato es requerido</small>
-                <br><br>
-                </article>
+            <article>                
+                * <small>Este dato es requerido</small>    
+            </article>
 
-                <p>
+            <article>
                 <input type="reset" name="limpiar" value="limpiar">
                 <input type="submit" name="submit" value="Enviar">
+            </article>
+        </fieldset>
+    </form>
+
+    {% if errores is not empty %}
+        <section>
+            <p>
+                Campos Erroneos: 
+            </p>
+
+            {% if errores['nombre'] %}
+                <p> 
+                    Nombre: {{ errores['nombre'] }} 
                 </p>
+            {% endif %}
 
-            </fieldset>
+            {% if errores['edad'] %}
+                <p> 
+                    Edad: {{ errores['edad'] }} 
+                </p>
+            {% endif %}
 
-</form>
+            {% if errores['email'] %}
+                <p> 
+                    Email: {{ errores['email'] }} 
+                </p>
+            {% endif %}
+
+            {% if errores['talla'] %}
+                <p> 
+                    Talla Calzado: {{ errores['talla'] }} 
+                </p>
+            {% endif %}
+
+            {% if errores['altura'] %}
+                <p> 
+                    Altura: {{ errores['altura'] }} 
+                </p>
+            {% endif %}
+
+            {% if errores['nacimiento'] %}
+                <p> 
+                    Fecha de Nacimiento: {{ errores['nacimiento'] }} 
+                </p>
+            {% endif %}
+
+            {% if errores['cpelo'] %}
+                <p> 
+                    Color de pelo: {{ errores['cpelo'] }} 
+                </p>
+            {% endif %}
+
+            {% if errores['fechaturno'] %}
+                <p> 
+                    Fecha turno: {{ errores['fechaturno'] }} 
+                </p>
+            {% endif %}
+
+            {% if errores['horaturno'] %}
+                <p> 
+                    Hora turno: {{ errores['horaturno'] }} 
+                </p>
+            {% endif %}
+        </section>
+    {% endif %}
 {% endblock %}

@@ -5,26 +5,21 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\Models\Turnos;
 
+class NuevoTurnoController extends Controller{
 
-
-class NuevoTurnoController extends Controller
-{
-    public function __construct()
-    {
+    public function __construct(){
         $this->model = new Turnos();
     }
 
     /**
      * Show all task
      */
-    public function index()
-    {
+    public function index(){
         $turnos = $this->model->get();
-        return view('turnos', ['turnos'=>$turnos]);
+        return view('turnos', compact('turnos'));
     }
 
-    public function create()
-    {
+    public function create(){
         return view('turnos.create');
     }
 
@@ -35,26 +30,35 @@ class NuevoTurnoController extends Controller
         if (empty($Error)){
             $result = $this->save();
             return view('turnoReservado', ['turnonuevo' => $result]);
-
         }else{
-            //Falta reemplazar esto y retornar vista para crear turno indicando los campos erroneos
-            print_r($Error); 
+            return view('turnos.create', [
+                                        'errores'=> $Error,
+                                        'nombre' => $_POST['nombre'],
+                                        'email' => $_POST['email'],
+                                        'tel' => $_POST['tel'],
+                                        'edad' => $_POST['edad'],
+                                        'talla' => $_POST['talla'],
+                                        'altura' => $_POST['altura'],
+                                        'nacimiento' => $_POST['nacimiento'],
+                                        'cpelo' => $_POST['cpelo'],
+                                        'fechaturno' => $_POST['fechaturno'],
+                                        'horaturno' => $_POST['horaturno']
+            ]);
         }   
     }
 
-    public function save()
-    {
+    public function save(){
         $turno = [
-                    'nombre' => $_POST['nombre'],
-                    'email' => $_POST['email'],
-                    'tel' => $_POST['tel'],
-                    'edad' => $_POST['edad'],
-                    'talla' => $_POST['talla'],
-                    'altura' => $_POST['altura'],
-                    'nacimiento' => $_POST['nacimiento'],
-                    'cpelo' => $_POST['cpelo'],
-                    'fechaturno' => $_POST['fechaturno'],
-                    'horaturno' => $_POST['horaturno'],
+                'nombre' => $_POST['nombre'],
+                'email' => $_POST['email'],
+                'tel' => $_POST['tel'],
+                'edad' => $_POST['edad'],
+                'talla' => $_POST['talla'],
+                'altura' => $_POST['altura'],
+                'nacimiento' => $_POST['nacimiento'],
+                'cpelo' => $_POST['cpelo'],
+                'fechaturno' => $_POST['fechaturno'],
+                'horaturno' => $_POST['horaturno'],
                 ];
         $this->model->insert($turno);
         return $turno;
