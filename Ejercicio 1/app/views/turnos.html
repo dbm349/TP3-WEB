@@ -27,8 +27,8 @@
     <tbody>
         {% for turno in turnos %}
             <tr>
-                <td>{{turno.fechaturno}}</td>     
-                <td>{{turno.horaturno}}</td>
+                <td>{{turno.fechaturno | date ("d/m/Y")}}</td>       
+                <td>{{turno.horaturno|date('H:i')}}</td>
                 <td>{{turno.nombre}}</td>
                 <td>{{turno.tel}}</td>
                 <td>{{turno.email}}</td>

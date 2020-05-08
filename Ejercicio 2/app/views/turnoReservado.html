@@ -67,15 +67,20 @@
         <div>
             <label> 
                 <h3> Fecha del turno: </h3>
-                {{turnonuevo.fechaturno}}
+                {{turnonuevo.fechaturno|date ("d/m/Y")}}
             </label>
         </div>
         <div>
             <label>  
                 <h3> Hora del turno: </h3>
-                {{turnonuevo.horaturno}}
+                {{turnonuevo.horaturno|date('H:i')}}
             </label>
         </div>
+        <div>
+            <label>  <b> Diagnostico: </b>
+              <div> <img src="data:image/{{turnonuevo.extension}};base64,{{diagnosticoImg}}"></div>
+            </label>
+          </div>
     </section>
 </div>
 {% endblock %}

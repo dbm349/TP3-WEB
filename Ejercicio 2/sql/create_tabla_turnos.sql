@@ -12,5 +12,6 @@ CREATE TABLE turnos (
     cpelo TEXT, 
     fechaturno TIMESTAMP NOT NULL,
     horaturno TEXT NOT NULL,
-    diagnostico MEDIUMBLOB
+    diagnostico longblob,
+    extension TEXT
     );

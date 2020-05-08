@@ -25,11 +25,12 @@ class NuevoTurnoController extends Controller{
 
     public function validate(){
         $Error =  array();
-        require 'app/controllers/ValidateController.php'; 
+        require 'app/controllers/ValidateController.php';
 
         if (empty($Error)){
             $result = $this->save();
-            return view('turnoReservado', ['turnonuevo' => $result]);
+            $diagnosticoImg = base64_encode($result['diagnostico']);
+            return view('turnoReservado', ['turnonuevo' => $result, 'diagnosticoImg'=>$diagnosticoImg]);
         }else{
             return view('turnos.create', [
                                         'errores'=> $Error,
@@ -43,12 +44,13 @@ class NuevoTurnoController extends Controller{
                                         'cpelo' => $_POST['cpelo'],
                                         'fechaturno' => $_POST['fechaturno'],
                                         'horaturno' => $_POST['horaturno'],
-                                        'diagnostico' => $contenido
+                                        'diagnostico' => $_FILES["diagnostico"]["tmp_name"]
             ]);
-        }   
+        }
     }
 
     public function save(){
+        
         $turno = [
                 'nombre' => $_POST['nombre'],
                 'email' => $_POST['email'],
@@ -60,6 +62,8 @@ class NuevoTurnoController extends Controller{
                 'cpelo' => $_POST['cpelo'],
                 'fechaturno' => $_POST['fechaturno'],
                 'horaturno' => $_POST['horaturno'],
+                'diagnostico' => file_get_contents($_FILES["diagnostico"]["tmp_name"]),
+                'extension' => pathinfo($_FILES["diagnostico"]["name"], PATHINFO_EXTENSION)
                 ];
         $this->model->insert($turno);
         return $turno;
