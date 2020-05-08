@@ -5,9 +5,11 @@
     $router->get('contact', 'PagesController@contact');
 
 
-    $router->get('turnos', 'NuevoTurnoController@index');
-    $router->get('turnos/create', 'NuevoTurnoController@create');
-    $router->post('turnos/validate', 'NuevoTurnoController@validate');
+    $router->get('turnos', 'TurnoController@index');
+    $router->get('turnos/create', 'TurnoController@create');
+    $router->post('turnos/validate', 'TurnoController@validate');
+    $router->get('turnos/completo', 'TurnoController@turnoCompleto');
+    
     
 
     $router->get('not_found', 'ProjectController@notFound');

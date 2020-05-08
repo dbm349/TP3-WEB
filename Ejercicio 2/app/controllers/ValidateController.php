@@ -44,11 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
     }
 
-    if(empty($_POST['talla'])) {
-    } else if (!is_numeric($_POST['talla'])){
-        $Error['talla'] = 'Debe contener solo numeros. ';
-    } else if (($_POST['talla']<20) || ($_POST['talla']>45)){
-        $Error['talla'] = 'Debe ser entre 20 y 45 ';
+    if(!empty($_POST['talla'])) {
+        if (!is_numeric($_POST['talla'])){
+            $Error['talla'] = 'Debe contener solo numeros. ';
+        }
+        if (($_POST['talla']<20) || ($_POST['talla']>45)){
+            $Error['talla'] = 'Debe ser entre 20 y 45 ';
+        }
     }
 
     if(!empty($_POST['altura'])){

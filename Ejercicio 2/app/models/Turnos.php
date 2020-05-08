@@ -13,6 +13,11 @@ class Turnos extends Model
         return $this->db->selectAll($this->table);
     }
 
+    public function getId($idTurno)
+    {
+        return $this->db->selectId($idTurno, $this->table);
+    }
+
     public function insert(array $turno)
     {
         $this->db->insert($this->table, $turno);
