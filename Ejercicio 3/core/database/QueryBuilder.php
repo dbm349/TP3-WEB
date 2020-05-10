@@ -71,19 +71,33 @@ class QueryBuilder
     public function update($table,$id,$parameters)
     {
         $parameters = $this->cleanParameterName($parameters);
-        $sql="UPDATE {$table} SET nombre = :nombre,
-                                    email = :email,
-                                    tel = :tel,
-                                    edad = :edad,
-                                    talla = :talla,
-                                    altura = :altura,
-                                    nacimiento = :nacimiento,
-                                    cpelo = :cpelo,
-                                    fechaturno = :fechaturno,
-                                    horaturno = :horaturno 
-                                WHERE id = {$id}";
-        
-        
+        if($parameters['diagnostico'] == NULL){
+            $sql="UPDATE {$table} SET nombre = :nombre,
+                                      email = :email,
+                                      tel = :tel,
+                                      edad = :edad,
+                                      talla = :talla,
+                                      altura = :altura,
+                                      nacimiento = :nacimiento,
+                                      cpelo = :cpelo,
+                                      fechaturno = :fechaturno,
+                                      horaturno = :horaturno 
+                                  WHERE id = {$id}";
+        }else{
+            $sql="UPDATE {$table} SET nombre = :nombre,
+                                      email = :email,
+                                      tel = :tel,
+                                      edad = :edad,
+                                      talla = :talla,
+                                      altura = :altura,
+                                      nacimiento = :nacimiento,
+                                      cpelo = :cpelo,
+                                      fechaturno = :fechaturno,
+                                      horaturno = :horaturno,
+                                      diagnostico = :diagnostico,
+                                      extension = :extension
+                                  WHERE id = {$id}";
+        }
         try {
             $statement = $this->pdo->prepare($sql);
             $statement->execute($parameters);
