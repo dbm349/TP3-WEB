@@ -4,7 +4,7 @@ use Monolog\Logger as MonologLogger;
 
 return [
     'database' => [
-        'name' => 'ejercicio2paw',
+        'name' => 'TurnosImg',
         'username' => 'root',
         'password' => '',
         'connection' => 'mysql:host=127.0.0.1',
