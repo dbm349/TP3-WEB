@@ -84,18 +84,12 @@
                 <input type="time" id="horaturno" name="horaturno" min="08:00:00" max="17:00:00" step="900" value="{{ turno.horaturno }}" required>
                 *
             </article>
-
+<!--
             <article>
-                <label>Diagnostico: </label>
-                {% if diagnosticoImg is not empty %}
-                    <img src="data:image/{{turno.extension}};base64,{{diagnosticoImg}}">
-                    <p>Si desea cambiar el diagnostico cargado, ingrese uno nuevo</p>
-                {% else %}
-                    <p>No hay cargado un diagnostico. Si desea incorporar uno, ingreselo a continuacion</p>
-                {% endif %}
+                <label>Diagnostico</label>
                 <input type="file" name="diagnostico" accept=".jpg,.png">
             </article>
-        
+-->            
             <article>
                 * <small>Este dato es requerido</small>
             </article>
@@ -167,11 +161,12 @@
                 </p>
             {% endif %}
 
+            <!--
             {% if errores['diagnostico'] %}
                 <p>
                     Diagnostico: {{ errores['diagnostico'] }}
                 </p>
-            {% endif %}
+            {% endif %} -->
         </section>
     {% endif %}
 {% endblock %}

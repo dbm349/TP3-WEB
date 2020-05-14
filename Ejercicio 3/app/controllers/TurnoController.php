@@ -52,13 +52,13 @@ class TurnoController extends Controller{
                 $cpelo = NULL;
             }
     
-           if(!empty($_FILES["diagnostico"]["tmp_name"])){
+           /* if(!empty($_FILES["diagnostico"]["tmp_name"])){
                 $diagnostico = file_get_contents($_FILES["diagnostico"]["tmp_name"]);
                 $extension = pathinfo($_FILES["diagnostico"]["name"], PATHINFO_EXTENSION);
             }else{
                 $diagnostico = NULL;
                 $extension = NULL;
-            }
+            }*/
 
             $turno = [
                 'nombre' => $_POST['nombre'],
@@ -71,13 +71,13 @@ class TurnoController extends Controller{
                 'cpelo' => $cpelo,
                 'fechaturno' => $_POST['fechaturno'],
                 'horaturno' => $_POST['horaturno'],
-                'diagnostico' => $diagnostico,
-                'extension' => $extension
+                //'diagnostico' => $diagnostico,
+                //'extension' => $extension
                 ];
 
             $this->model->update($_POST["id"],$turno);
-            $diagnosticoImg = base64_encode($turno['diagnostico']);
-            return view('turno.modificado', ['turnonuevo' => $turno, 'diagnosticoImg'=>$diagnosticoImg]);
+           // $diagnosticoImg = base64_encode($turno['diagnostico']);
+            return view('turno.modificado', ['turnonuevo' => $turno]); /*, 'diagnosticoImg'=>$diagnosticoImg]);*/
         }else{
             return view('turnos.modificacion', [
                                         'errores'=> $Error,
@@ -91,7 +91,7 @@ class TurnoController extends Controller{
                                         'cpelo' => $_POST['cpelo'],
                                         'fechaturno' => $_POST['fechaturno'],
                                         'horaturno' => $_POST['horaturno'],
-                                        'diagnostico' => $_FILES["diagnostico"]["tmp_name"]
+                                        //'diagnostico' => $_FILES["diagnostico"]["tmp_name"]
             ]);
         }
     }
@@ -181,8 +181,7 @@ class TurnoController extends Controller{
 
     public function update(){
         $turno = $this->model->getId($_GET["id"]);
-        $diagnosticoImg = base64_encode($turno[0]->diagnostico);
-        return view('turno.modificacion', ['turno' => $turno[0],'diagnosticoImg'=>$diagnosticoImg]);
+        return view('turno.modificacion', ['turno' => $turno[0]]);
     }
 
     public function delete(){
