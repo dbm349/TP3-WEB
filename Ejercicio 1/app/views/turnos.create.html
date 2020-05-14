@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Turno Nuevo{% endblock %}
+{% block title %}Crear Tarea Nueva{% endblock %}
 
 {% block header %}
     {{ include('partials/nav.html') }}
@@ -29,11 +29,11 @@
                 *
             </article>    
             
-            <article>
+            </article>
                 <label for="tel">Teléfono: </label> 
                 <input type="number" id="tel" name="tel" pattern=[0-9\+][0-9]{13} placeholder="Ingrese su teléfono" value="{{ tel }}" required>
                 *
-            </article>
+            <article>
 
             <article>
                 <label for="edad">Edad: </label>
